@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+    <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script> -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/3.0.0/aframe/build/aframe-ar-nft.js"></script>
+
+  <script>
+        const markerLinks = {
+          nagura: "https://www.google.com/maps/dir/?api=1&destination=24.411208685386672,124.14409391411303",
+          hirakubo: "https://www.google.com/maps/dir/?api=1&destination=24.610300832970438,124.3161103461495",
+          fuune: "https://www.google.com/maps/dir/?api=1&destination=24.420040591782513,124.1337949076269",
+          port: "https://www.google.com/maps/dir/?api=1&destination=24.33252835029597,124.15931266432014",
+          sukuji: "https://www.google.com/maps/dir/?api=1&destination=24.464778723344576,124.12349805986521",
+          yashima: "https://www.google.com/maps/dir/?api=1&destination=24.330963023236066,124.17078288057222",
+          sakae: "https://www.google.com/maps/dir/?api=1&destination=24.507095978079395,124.25214372424057",
+          yorn: "https://www.google.com/maps/dir/?api=1&destination=24.449122877805237,124.1332761665664",
+          tonoshiro: "https://www.google.com/maps/dir/?api=1&destination=24.33406081370545,124.16335645673051",
+        };
+
+          const nftElements = document.querySelectorAll("a-nft");
+        nftElements.forEach((nftElement) => {
+          nftElement.addEventListener("markerFound", function () {
+            const link = markerLinks[nftElement.id];
+            document.querySelector(".buttons button").setAttribute("onclick", `location.href='${link}'`);
+            document.querySelector(".buttons").style.display = "flex";
+          });
+
+          nftElement.addEventListener("markerLost", function () {
+            document.querySelector(".buttons").style.display = "none";
+          });
+        });     
+  </script>
+
+
+    <style>
+      .arjs-loader {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+      }
+
+  .buttons {
+    position: absolute;
+    bottom: 2cm;
+    left: 0;
+    width: 100%;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+  
+  .buttons button {
+    background-color: #454545; /* ①ボタンカラーを青緑色に変更 */
+    color: #FFFFFF; /* ②文字色を白に */
+    font-size: 1em; /* ④ボタンの大きさを30%ほど大きく */
+    padding: 0.5em 1em; /* ④ボタンの大きさを30%ほど大きく */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+      .scan-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 1.25em; /* フォントサイズを小さくする */
+        text-align: center;
+        z-index: 5;
+      }
+
+      /* ガイド線を追加 */
+      .guide-lines {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60.5vmin;
+        height: 100.1vmin;
+        border: 2px solid white;
+        z-index: 4;
+      }
+</style>
+
+    </style>    
+  </head>
+
+
+  <body style="margin : 0px; overflow: hidden;">
+    <!-- minimal loader shown until image descriptors are loaded -->
+    <div class="arjs-loader">
+      <div>しばしお待ちを...（~10秒）</div>
+    </div>
+
+    <div class="buttons" style="display: none;">
+      <button type="button">ここへ行く！</button>
+    </div>
+
+    <div class="scan-text">しおりをスキャン</div> <!-- テキストを変更 -->
+    <div class="guide-lines"></div> <!-- ガイド線を追加 -->
+
+    <a-scene
+      vr-mode-ui="enabled: false;"
+      renderer="logarithmicDepthBuffer: true; precision: medium;"
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+    >
+    
+    
+     <a-nft
+        id="nagura"
+        type="nft"        
+        url="assets/nagura"
+        smooth="true"
+      smoothCount="10"
+      smoothTolerance=".001"
+      smoothThreshold="15" >
+       <a-image
+        src="guide-nagura.png"
+        position="70 250 0" 
+        scale="200 200 200"
+        ></a-image>
+      </a-nft>
+
+     <a-nft
+        id="hirakubo"     
+        type="nft"        
+        url="assets/hirakubo"
+        smooth="true"
+      smoothCount="10"
+      smoothTolerance=".001"
+      smoothThreshold="15" >
+        <a-image
+        src="guide-hirakubo.png"
+        position="70 250 0" 
+        scale="200 200 200"
+        ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="fuune"
+      type="nft"        
+      url="assets/fuune"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".001"
+      smoothThreshold="15" >
+      <a-image
+      src="guide-fuune.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="port"
+      type="nft"        
+      url="assets/port"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".001"
+      smoothThreshold="15" >
+      <a-image
+      src="guide-port.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="sukuji"
+      type="nft"        
+      url="assets/sukuji"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".001"
+      smoothThreshold="15" >
+      <a-image
+      src="guide-sukuji.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="yashima"
+      type="nft"        
+      url="assets/yashima"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".001"
+      smoothThreshold="15" >
+      <a-image
+      src="guide-yashima.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="sakae"
+      type="nft"        
+      url="assets/sakae"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".001"
+      smoothThreshold="15" >
+      <a-image
+      src="guide-sakae.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="yorn"
+      type="nft"        
+      url="assets/yorn"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".001"
+      smoothThreshold="15" >
+      <a-image
+      src="guide-yorn.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="tonoshiro"
+      type="nft"        
+      url="assets/tonoshiro"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".001"
+      smoothThreshold="15" >
+      <a-image
+      src="guide-tonoshiro.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-entity camera></a-entity>
+      
+    </a-scene>
+
+
+    <script>
+      window.addEventListener("DOMContentLoaded", function() {
+        const nftElements = document.querySelectorAll("a-nft");
+        nftElements.forEach((nftElement) => {
+          nftElement.addEventListener("markerFound", function () {
+            const link = markerLinks[nftElement.id];
+            document.querySelector(".buttons button").setAttribute("onclick", `location.href='${link}'`);
+            document.querySelector(".buttons").style.display = "flex";
+            document.querySelector(".scan-text").style.display = "none"; // 追加
+            document.querySelector(".guide-lines").style.display = "none"; // 追加                         
+          });
+
+          nftElement.addEventListener("markerLost", function () {
+            document.querySelector(".buttons").style.display = "none";
+            document.querySelector(".scan-text").style.display = "block"; // 追加            
+            document.querySelector(".guide-lines").style.display = "block"; // 追加   
+          });
+        });
+      });
+    </script> 
+
+  </body>
+
+</html>
+
+
+            <!-- <a-nft
+        id="nagura"
+        type="nft"        
+        url="https://cdn.glitch.global/24c94111-7a50-4163-a9e1-9d6d366b5663/nagura"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5">
+       <a-image
+        src="guide-nagura.png"
+        position="70 250 0" 
+        scale="200 200 200"
+        ></a-image>
+      </a-nft>
+
+     <a-nft
+        id="hirakubo"     
+        type="nft"        
+        url="https://cdn.glitch.global/24c94111-7a50-4163-a9e1-9d6d366b5663/hirakubo"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5" >
+        <a-image
+        src="guide-hirakubo.png"
+        position="70 250 0" 
+        scale="200 200 200"
+        ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="fuune"
+      type="nft"        
+      url="https://cdn.glitch.global/24c94111-7a50-4163-a9e1-9d6d366b5663/fuune"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5" >
+      <a-image
+      src="guide-fuune.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="port"
+      type="nft"        
+      url="https://cdn.glitch.global/24c94111-7a50-4163-a9e1-9d6d366b5663/port"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5" >
+      <a-image
+      src="guide-port.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="sukuji"
+      type="nft"        
+      url="https://cdn.glitch.global/24c94111-7a50-4163-a9e1-9d6d366b5663/sukuji"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5" >
+      <a-image
+      src="guide-sukuji.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="yashima"
+      type="nft"        
+      url="https://cdn.glitch.global/24c94111-7a50-4163-a9e1-9d6d366b5663/yashima"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5" >
+      <a-image
+      src="guide-yashima.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="sakae"
+      type="nft"        
+      url="https://cdn.glitch.global/24c94111-7a50-4163-a9e1-9d6d366b5663/sakae"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5" >
+      <a-image
+      src="guide-sakae.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="yorn"
+      type="nft"        
+      url="https://cdn.glitch.global/24c94111-7a50-4163-a9e1-9d6d366b5663/yorn"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5" >
+      <a-image
+      src="guide-yorn.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-nft
+      id="tonoshiro"
+      type="nft"        
+      url="https://cdn.glitch.global/24c94111-7a50-4163-a9e1-9d6d366b5663/tonoshiro"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5" >
+      <a-image
+      src="guide-tonoshiro.png"
+      position="70 250 0" 
+      scale="200 200 200"
+      ></a-image>
+      </a-nft>
+
+      <a-entity camera></a-entity>
+      
+    </a-scene>
+
+
+    <script>
+      window.addEventListener("DOMContentLoaded", function() {
+        const nftElements = document.querySelectorAll("a-nft");
+        nftElements.forEach((nftElement) => {
+          nftElement.addEventListener("markerFound", function () {
+            const link = markerLinks[nftElement.id];
+            document.querySelector(".buttons button").setAttribute("onclick", `location.href='${link}'`);
+            document.querySelector(".buttons").style.display = "flex";
+          });
+
+          nftElement.addEventListener("markerLost", function () {
+            document.querySelector(".buttons").style.display = "none";
+          });
+        });
+      });
+    </script> 
+
+  </body>
+
+</html>
