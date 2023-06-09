@@ -1,47 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <!-- <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-    <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script> -->
-    <script src="https://raw.githack.com/AR-js-org/AR.js/3.0.0/aframe/build/aframe-ar-nft.js"></script>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    </head>
 
-  </head>
+    <body style="margin: 0; overflow: hidden;">
+        <a-scene
+            embedded
+            loading-screen="enabled: false;"
+            arjs="sourceType: webcam; debugUIEnabled: false;"
+        >
+                <!-- <a-image
+                    src="maru.png"
+                    look-at="[gps-camera]"
+                    scale="200 400 10"
+                    gps-entity-place="latitude: 24.340287770548557; longitude:124.15832572806531;"
+                ></a-image> -->
 
+                <a-image
+                src="maru.png"
+                look-at="[gps-camera]"
+                scale="200 200 10"
+                gps-entity-place="latitude:24.34026508936578; longitude:124.1581258938847;"
+                ></a-image>
 
-  <body style="margin : 0px; overflow: hidden;">
-    <!-- minimal loader shown until image descriptors are loaded -->
-
-    <a-scene
-      vr-mode-ui="enabled: false;"
-      renderer="logarithmicDepthBuffer: true; precision: medium;"
-      embedded
-      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-    >
-    
-    
-     <a-nft
-        id="nagura"
-        type="nft"        
-        url="assets/garou"
-        smooth="true"
-      smoothCount="10"
-      smoothTolerance=".001"
-      smoothThreshold="15" >
-       <a-image
-        src="open.png"
-        position="0 0 0" 
-        scale="200 50 10"
-        ></a-image>
-      </a-nft>
-
-
-      <a-entity camera></a-entity>
-      
-    </a-scene>
-
-  </body>
-
+                <!-- <a-sphere
+                radius="1.25"
+                color="#EF2D5E"
+                gps-entity-place="latitude: 24.340287770548557; longitude:124.15832572806531;"></a-sphere>
+         -->
+            <a-camera gps-camera rotation-reader></a-camera>
+        </a-scene>
+    </body>
 </html>
-
-
