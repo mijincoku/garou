@@ -8,31 +8,20 @@
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     </head>
 
+    
     <body style="margin: 0; overflow: hidden;">
         <a-scene
             embedded
             loading-screen="enabled: false;"
             arjs="sourceType: webcam; debugUIEnabled: false;"
         >
-                <!-- <a-image
-                    src="maru.png"
-                    look-at="[gps-camera]"
-                    scale="200 400 10"
-                    gps-entity-place="latitude: 24.340287770548557; longitude:124.15832572806531;"
-                ></a-image> -->
-
                 <a-image
-                src="open.png"
-                look-at="[gps-camera]"
-                scale="200 200 10"
-                gps-entity-place="latitude:24.34026508936578; longitude:124.1581258938847;"
+                    src="assets/asset.png"
+                    look-at="[gps-camera]"
+                    scale="1 1 1"
+                    gps-entity-place="latitude: 24.340284639746287; longitude: 124.15810510676471;"
                 ></a-image>
 
-                <!-- <a-sphere
-                radius="1.25"
-                color="#EF2D5E"
-                gps-entity-place="latitude: 24.340287770548557; longitude:124.15832572806531;"></a-sphere>
-         -->
             <a-camera gps-camera rotation-reader></a-camera>
         </a-scene>
     </body>
